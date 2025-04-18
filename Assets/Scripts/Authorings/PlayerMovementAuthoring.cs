@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Entities;
+using Unity.Mathematics;
 
 public class PlayerMovementAuthoring : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovementAuthoring : MonoBehaviour
             AddComponent(entity, new PlayerMovement
             {
                 movementSpeed = authoring.movementSpeed,
+                movementDirection = new float3(0.0f),
             });
         }
     }
@@ -22,4 +24,5 @@ public class PlayerMovementAuthoring : MonoBehaviour
 public struct PlayerMovement : IComponentData
 {
     public float movementSpeed;
+    public float3 movementDirection;
 }

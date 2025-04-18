@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 557392443832188694}
   - component: {fileID: 5192555612551564411}
   - component: {fileID: 2254893670778671912}
+  - component: {fileID: 4661866821254599258}
   - component: {fileID: 3080975247194231292}
+  - component: {fileID: -5030067523422895903}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -85,6 +87,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4661866821254599258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726631142856513890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d1111d28a74044188b907d3265be00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3080975247194231292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,8 +111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babf89adb7d3180418882e5d3a22996b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 0}
   movementSpeed: 10
+--- !u!114 &-5030067523422895903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726631142856513890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de1ba7fd172ac24ea96cd0430e6c72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8995101859025504922
 GameObject:
   m_ObjectHideFlags: 0
