@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-partial struct PlayerSystem : ISystem
+partial struct PlayerMovementSystem : ISystem
 {
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
@@ -12,7 +12,7 @@ partial struct PlayerSystem : ISystem
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
 
-        foreach ((RefRW<LocalTransform> transform, RefRW<Player> player, Entity entity) in SystemAPI.Query<RefRW<LocalTransform>, RefRW<Player>>().WithEntityAccess())
+        foreach ((RefRW<LocalTransform> transform, RefRO<PlayerMovement> player) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<PlayerMovement>>())
         {
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
@@ -29,17 +29,6 @@ partial struct PlayerSystem : ISystem
                     transform.ValueRW.Position += new float3(-1.0f, 0.0f, 0.0f) * player.ValueRO.movementSpeed * SystemAPI.Time.DeltaTime;
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-            {
-                Shoot();
-            }
         }
-    }
-
-    [BurstCompile]
-    private void Shoot()
-    {
-        Debug.Log("SHOOT!!!");
     }
 }
