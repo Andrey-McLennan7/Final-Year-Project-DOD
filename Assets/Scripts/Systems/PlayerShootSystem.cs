@@ -19,7 +19,10 @@ partial struct PlayerShootSystem : ISystem
             {
                 Entity laserEntity = state.EntityManager.Instantiate(playerShoot.ValueRO.laserPrefab);
 
+                RefRW<Projectile> laserProjectile = SystemAPI.GetComponentRW<Projectile>(laserEntity);
                 RefRW<LocalTransform> laserTransform = SystemAPI.GetComponentRW<LocalTransform>(laserEntity);
+
+                laserProjectile.ValueRW.playerEntity = playerEntity;
 
                 laserTransform.ValueRW.Position = playerLocalTransform.ValueRO.Position;
                 laserTransform.ValueRW.Rotation = Quaternion.identity;
