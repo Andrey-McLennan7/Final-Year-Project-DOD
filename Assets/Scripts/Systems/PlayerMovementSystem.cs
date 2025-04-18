@@ -1,8 +1,8 @@
+using UnityEngine;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 partial struct PlayerMovementSystem : ISystem
 {
