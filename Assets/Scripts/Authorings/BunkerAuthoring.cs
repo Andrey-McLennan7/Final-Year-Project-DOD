@@ -4,7 +4,8 @@ using Unity.Entities;
 public class BunkerAuthoring : MonoBehaviour
 {
     public GameObject healthBar;
-    public int health = 10;
+
+    public int maxHealth = 10;
 
     private class Baker : Baker<BunkerAuthoring>
     {
@@ -15,7 +16,8 @@ public class BunkerAuthoring : MonoBehaviour
             AddComponent(entity, new Bunker
             {
                 healthBar = GetEntity(authoring.healthBar, TransformUsageFlags.Dynamic),
-                health = authoring.health,
+                maxHealth = authoring.maxHealth,
+                health = authoring.maxHealth,
             });
         }
     }
@@ -24,5 +26,6 @@ public class BunkerAuthoring : MonoBehaviour
 public struct Bunker : IComponentData
 {
     public Entity healthBar;
+    public int maxHealth;
     public int health;
 }
