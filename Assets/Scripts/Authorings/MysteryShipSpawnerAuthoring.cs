@@ -1,6 +1,5 @@
 using UnityEngine;
 using Unity.Entities;
-using System.Threading;
 
 public class MysteryShipSpawnerAuthoring : MonoBehaviour
 {
@@ -25,6 +24,8 @@ public class MysteryShipSpawnerAuthoring : MonoBehaviour
 public struct MysteryShipSpawner : IComponentData
 {
     public Entity mysteryShipPrefab;
+    public Entity mysteryShipEntity;
+
     public float timer;
     public bool activeMysteryShip;
 }

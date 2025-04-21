@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Entities;
+using Unity.Mathematics;
 
 public class MysteryShipMoverAuthoring : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MysteryShipMoverAuthoring : MonoBehaviour
 
             AddComponent(entity, new MysteryShipMover
             {
+                movementDirection = new float3(0.0f),
                 movementSpeed = authoring.movementSpeed,
             });
         }
@@ -21,6 +23,6 @@ public class MysteryShipMoverAuthoring : MonoBehaviour
 
 public struct MysteryShipMover : IComponentData
 {
-    public Entity mysteryShipSpawnerEntity;
+    public float3 movementDirection;
     public float movementSpeed;
 }

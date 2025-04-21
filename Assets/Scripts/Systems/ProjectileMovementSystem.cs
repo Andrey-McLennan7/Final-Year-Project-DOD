@@ -1,4 +1,3 @@
-using UnityEngine;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
@@ -15,14 +14,16 @@ partial struct ProjectileMovementSystem : ISystem
         {
             localTransform.ValueRW.Position += projectile.ValueRO.movementDirection * projectile.ValueRO.movementSpeed * SystemAPI.Time.DeltaTime;
 
-            if (localTransform.ValueRW.Position.y >= 16.0f) // Temporary
+            if (localTransform.ValueRW.Position.y < 16.0f) // Temporary
             {
-                RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.playerEntity);
-
-                playerShoot.ValueRW.activeLaser = false;
-
-                entityCommandBuffer.DestroyEntity(projectileEntity);
+                return;
             }
+
+            RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.playerEntity);
+
+            playerShoot.ValueRW.activeLaser = false;
+
+            entityCommandBuffer.DestroyEntity(projectileEntity);
         }
     }
 }
