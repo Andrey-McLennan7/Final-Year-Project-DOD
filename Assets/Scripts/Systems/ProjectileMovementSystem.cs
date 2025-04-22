@@ -19,12 +19,15 @@ partial struct ProjectileMovementSystem : ISystem
             if (localTransform.ValueRO.Position.y < 16.0f &&
                 localTransform.ValueRO.Position.y > -16.0f  )
             {
-                return;
+                continue;
             }
 
-            RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.playerEntity);
+            if (state.EntityManager.Exists(projectile.ValueRO.playerEntity))
+            {
+                RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.playerEntity);
 
-            playerShoot.ValueRW.activeLaser = false;
+                playerShoot.ValueRW.activeLaser = false;
+            }
 
             entityCommandBuffer.DestroyEntity(projectileEntity);
             // Temporary end

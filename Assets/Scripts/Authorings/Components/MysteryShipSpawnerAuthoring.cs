@@ -9,7 +9,7 @@ public class MysteryShipSpawnerAuthoring : MonoBehaviour
     {
         public override void Bake(MysteryShipSpawnerAuthoring authoring)
         {
-            Entity entity = GetEntity(TransformUsageFlags.Dynamic);
+            Entity entity = GetEntity(TransformUsageFlags.None);
 
             AddComponent(entity, new MysteryShipSpawner
             {

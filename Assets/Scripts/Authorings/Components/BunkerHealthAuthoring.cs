@@ -11,11 +11,11 @@ public class BunkerHealthAuthoring : MonoBehaviour
     {
         public override void Bake(BunkerHealthAuthoring authoring)
         {
-            Entity entity = GetEntity(TransformUsageFlags.None);
+            Entity entity = GetEntity(TransformUsageFlags.Renderable);
 
             AddComponent(entity, new BunkerHealth
             {
-                healthBar = GetEntity(authoring.healthBar, TransformUsageFlags.Dynamic),
+                healthBar = GetEntity(authoring.healthBar, TransformUsageFlags.Renderable),
                 maxHealth = authoring.maxHealth,
                 health = authoring.maxHealth,
             });

@@ -338,6 +338,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2009826284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2009826285}
+  - component: {fileID: 2009826288}
+  - component: {fileID: 2009826287}
+  - component: {fileID: 2009826286}
+  m_Layer: 0
+  m_Name: InvaderGrid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2009826285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009826284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.7, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2009826286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009826284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5d616b2a56a7b4f8f4450acbdcb0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection:
+    x: 1
+    y: 0
+    z: 0
+  movementSpeed: 0.15
+--- !u!114 &2009826287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009826284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d2b897b3baf38345b61ab5e6dfb4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2009826288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009826284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1edf8bd1ab4b14aa16dbf5cb9c870e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invaderTypes:
+  - {fileID: 3126367388535474468, guid: df484d607aa50eb4ba5f06c044f22d8e, type: 3}
+  - {fileID: 8257460072045618669, guid: 802cb5e3c3e0fac49b304d3386bd1e8b, type: 3}
+  - {fileID: 6654006926361106450, guid: e5aea447a87f29644bb020f784fc34a5, type: 3}
+  rows: 5
+  columns: 11
 --- !u!1001 &2035826581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -457,8 +538,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 781718782574311456}
-  - {fileID: 1115034226}
   - {fileID: 2035826581}
   - {fileID: 746528035}
   - {fileID: 198331588}
   - {fileID: 133754800}
+  - {fileID: 2009826285}
+  - {fileID: 1115034226}
