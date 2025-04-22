@@ -15,7 +15,9 @@ partial struct ProjectileMovementSystem : ISystem
         {
             localTransform.ValueRW.Position += projectile.ValueRO.movementDirection * projectile.ValueRO.movementSpeed * SystemAPI.Time.DeltaTime;
 
-            if (localTransform.ValueRW.Position.y < 16.0f) // Temporary
+            // Temporary start
+            if (localTransform.ValueRO.Position.y < 16.0f &&
+                localTransform.ValueRO.Position.y > -16.0f  )
             {
                 return;
             }
@@ -25,6 +27,7 @@ partial struct ProjectileMovementSystem : ISystem
             playerShoot.ValueRW.activeLaser = false;
 
             entityCommandBuffer.DestroyEntity(projectileEntity);
+            // Temporary end
         }
     }
 }

@@ -9,7 +9,7 @@ public class MysteryShipAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new MysteryShip{ });
+            AddComponent(entity, new MysteryShip { });
         }
     }
 }
