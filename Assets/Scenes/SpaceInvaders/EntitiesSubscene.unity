@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 2009826288}
   - component: {fileID: 2009826287}
   - component: {fileID: 2009826286}
+  - component: {fileID: 2009826289}
   m_Layer: 0
   m_Name: InvaderGrid
   m_TagString: Untagged
@@ -419,6 +420,18 @@ MonoBehaviour:
   - {fileID: 6654006926361106450, guid: e5aea447a87f29644bb020f784fc34a5, type: 3}
   rows: 5
   columns: 11
+--- !u!114 &2009826289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009826284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b008a1a73c4c84a98d1ebdf465ff56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2035826581
 PrefabInstance:
   m_ObjectHideFlags: 0

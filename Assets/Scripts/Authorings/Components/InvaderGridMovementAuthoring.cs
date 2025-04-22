@@ -5,7 +5,7 @@ using Unity.Mathematics;
 public class InvaderGridMovementAuthoring : MonoBehaviour
 {
     public float3 movementDirection;
-    public float movementSpeed;
+    public float movementSpeed = 0.15f;
 
     private class Baker : Baker<InvaderGridMovementAuthoring>
     {
