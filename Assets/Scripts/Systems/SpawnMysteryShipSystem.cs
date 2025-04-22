@@ -4,6 +4,7 @@ using Unity.Burst;
 using Unity.Transforms;
 using Unity.Mathematics;
 
+[BurstCompile]
 partial struct SpawnMysteryShipSystem : ISystem
 {
     [BurstCompile]

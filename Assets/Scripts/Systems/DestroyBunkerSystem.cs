@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Burst;
 
+[BurstCompile]
 partial struct DestroyBunkerSystem : ISystem
 {
     [BurstCompile]
@@ -10,7 +11,7 @@ partial struct DestroyBunkerSystem : ISystem
         EntityCommandBuffer entityCommandBuffer =
             SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach ((RefRO<Bunker> bunker, Entity bunkerEntity) in SystemAPI.Query<RefRO<Bunker>>().WithEntityAccess())
+        foreach ((RefRO<BunkerHealth> bunker, Entity bunkerEntity) in SystemAPI.Query<RefRO<BunkerHealth>>().WithEntityAccess())
         {
             if (bunker.ValueRO.health > 0)
             {

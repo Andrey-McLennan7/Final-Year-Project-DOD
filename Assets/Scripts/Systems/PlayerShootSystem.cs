@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Burst;
 using Unity.Transforms;
 
+[BurstCompile]
 partial struct PlayerShootSystem : ISystem
 {
     [BurstCompile]

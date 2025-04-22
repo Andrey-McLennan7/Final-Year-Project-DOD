@@ -2,6 +2,7 @@ using Unity.Entities;
 using Unity.Burst;
 using Unity.Transforms;
 
+[BurstCompile]
 [UpdateAfter(typeof(SpawnMysteryShipSystem))]
 partial struct MoveMysteryShipSystem : ISystem
 {

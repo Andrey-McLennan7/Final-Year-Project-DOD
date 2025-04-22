@@ -1,19 +1,19 @@
 using UnityEngine;
 using Unity.Entities;
 
-public class BunkerAuthoring : MonoBehaviour
+public class BunkerHealthAuthoring : MonoBehaviour
 {
     public GameObject healthBar;
 
     public int maxHealth = 10;
 
-    private class Baker : Baker<BunkerAuthoring>
+    private class Baker : Baker<BunkerHealthAuthoring>
     {
-        public override void Bake(BunkerAuthoring authoring)
+        public override void Bake(BunkerHealthAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.None);
 
-            AddComponent(entity, new Bunker
+            AddComponent(entity, new BunkerHealth
             {
                 healthBar = GetEntity(authoring.healthBar, TransformUsageFlags.Dynamic),
                 maxHealth = authoring.maxHealth,
@@ -23,7 +23,7 @@ public class BunkerAuthoring : MonoBehaviour
     }
 }
 
-public struct Bunker : IComponentData
+public struct BunkerHealth : IComponentData
 {
     public Entity healthBar;
     public int maxHealth;
