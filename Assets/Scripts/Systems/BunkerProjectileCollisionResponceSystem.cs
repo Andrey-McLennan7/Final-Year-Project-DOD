@@ -9,18 +9,19 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach (RefRW<Bunker> bunker in SystemAPI.Query<RefRW<Bunker>>())
+        foreach ((RefRO<LocalToWorld> localToWorld, RefRW<Bunker> bunker) in SystemAPI.Query<RefRO<LocalToWorld>, RefRW<Bunker>>())
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
                 --bunker.ValueRW.health;
             }
 
-            RefRW<PostTransformMatrix> bunkerHealthBarTransformformMatrix = SystemAPI.GetComponentRW<PostTransformMatrix>(bunker.ValueRW.healthBar);
-
             float normalisedHealth = (float)bunker.ValueRO.health / (float)bunker.ValueRO.maxHealth;
 
-            bunkerHealthBarTransformformMatrix.ValueRW.Value = float4x4.Scale(normalisedHealth, 1.0f, 1.0f);
+            RefRW<PostTransformMatrix> bunkerHealthBarTransformMatrix = SystemAPI.GetComponentRW<PostTransformMatrix>(bunker.ValueRW.healthBar);
+
+            bunkerHealthBarTransformMatrix.ValueRW.Value =
+                float4x4.Scale(normalisedHealth * localToWorld.ValueRO.Value.c0.x, localToWorld.ValueRO.Value.c1.y, 1.0f);
         }
     }
 }
