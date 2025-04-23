@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Transforms;
 
 [BurstCompile]
+[UpdateAfter(typeof(PlayerShootSystem))]
 partial struct ProjectileMovementSystem : ISystem
 {
     [BurstCompile]
@@ -22,7 +23,7 @@ partial struct ProjectileMovementSystem : ISystem
                 continue;
             }
 
-            if (state.EntityManager.Exists(projectile.ValueRO.playerEntity))
+            if (projectile.ValueRO.playerEntity != Entity.Null)
             {
                 RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.playerEntity);
 
