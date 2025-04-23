@@ -1,4 +1,3 @@
-using UnityEngine;
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Transforms;
@@ -19,7 +18,7 @@ partial struct PlayerShootSystem : ISystem
         RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(playerEntity);
         RefRO<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRO<LocalTransform>(playerEntity);
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Space) || UnityEngine.Input.GetMouseButtonDown(0))
         {
             if (playerShoot.ValueRO.activeLaser)
             {

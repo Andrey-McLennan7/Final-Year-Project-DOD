@@ -1,4 +1,3 @@
-using UnityEngine;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -18,9 +17,9 @@ partial struct PlayerMovementSystem : ISystem
         RefRW<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRW<LocalTransform>(playerEntity);
 
         // Move right
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightArrow) || UnityEngine.Input.GetKey(UnityEngine.KeyCode.D))
         {
-            playerMovement.ValueRW.movementDirection = Vector3.right;
+            playerMovement.ValueRW.movementDirection = UnityEngine.Vector3.right;
 
             if (playerLocalTransform.ValueRO.Position.x < 14.0f)
             {
@@ -29,9 +28,9 @@ partial struct PlayerMovementSystem : ISystem
         }
 
         // Move left
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftArrow) || UnityEngine.Input.GetKey(UnityEngine.KeyCode.A))
         {
-            playerMovement.ValueRW.movementDirection = Vector3.left;
+            playerMovement.ValueRW.movementDirection = UnityEngine.Vector3.left;
 
             if (playerLocalTransform.ValueRO.Position.x > -14.0f)
             {
