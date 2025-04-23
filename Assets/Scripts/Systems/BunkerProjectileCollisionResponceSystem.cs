@@ -1,4 +1,3 @@
-using UnityEngine;
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Transforms;
@@ -12,7 +11,7 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
     {
         foreach ((RefRO<LocalToWorld> localToWorld, RefRW<BunkerHealth> bunkerHealth) in SystemAPI.Query<RefRO<LocalToWorld>, RefRW<BunkerHealth>>())
         {
-            if (Input.GetKeyDown(KeyCode.L))
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.K))
             {
                 --bunkerHealth.ValueRW.health;
 
