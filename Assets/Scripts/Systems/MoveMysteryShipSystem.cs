@@ -25,7 +25,7 @@ partial struct MoveMysteryShipSystem : ISystem
         Entity mysteryShipEntity = mysteryShipSpawner.ValueRO.mysteryShipEntity;
 
         // Get necessary mystery ship components
-        RefRO<MysteryShipMover> mysteryShipMover = SystemAPI.GetComponentRO<MysteryShipMover>(mysteryShipEntity);
+        RefRO<Movement> mysteryShipMover = SystemAPI.GetComponentRO<Movement>(mysteryShipEntity);
         RefRW<LocalTransform> mysteryShipLocalTransform = SystemAPI.GetComponentRW<LocalTransform>(mysteryShipEntity);
 
         // Change position of the mystery ship

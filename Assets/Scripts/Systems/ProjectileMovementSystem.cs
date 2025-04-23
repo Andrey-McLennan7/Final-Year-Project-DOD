@@ -11,13 +11,13 @@ partial struct ProjectileMovementSystem : ISystem
         EntityCommandBuffer entityCommandBuffer =
             SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach ((RefRW<LocalTransform> localTransform, RefRO<Projectile> projectile, Entity projectileEntity) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<Projectile>>().WithEntityAccess())
+        foreach ((RefRW<LocalTransform> localTransform, RefRO<Projectile> projectile, RefRO<Movement> movement, Entity projectileEntity) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<Projectile>, RefRO<Movement>>().WithEntityAccess())
         {
-            localTransform.ValueRW.Position += projectile.ValueRO.movementDirection * projectile.ValueRO.movementSpeed * SystemAPI.Time.DeltaTime;
+            localTransform.ValueRW.Position += movement.ValueRO.movementDirection * movement.ValueRO.movementSpeed * SystemAPI.Time.DeltaTime;
 
             // Temporary start
             if (localTransform.ValueRO.Position.y < 16.0f &&
-                localTransform.ValueRO.Position.y > -16.0f  )
+                localTransform.ValueRO.Position.y > -16.0f )
             {
                 continue;
             }

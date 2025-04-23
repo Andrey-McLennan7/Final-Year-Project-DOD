@@ -14,7 +14,7 @@ partial struct PlayerMovementSystem : ISystem
         Entity playerEntity = SystemAPI.GetSingletonEntity<Player>();
 
         // Get necessary player components
-        RefRW<PlayerMovement> playerMovement = SystemAPI.GetComponentRW<PlayerMovement>(playerEntity);
+        RefRW<Movement> playerMovement = SystemAPI.GetComponentRW<Movement>(playerEntity);
         RefRW<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRW<LocalTransform>(playerEntity);
 
         // Move right

@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423108432310860798}
+  - component: {fileID: -3786116649441852304}
   - component: {fileID: -2662349281127893651}
+  - component: {fileID: 5295673229154144379}
   - component: {fileID: 6940323432130201842}
   - component: {fileID: 3607108344048490457}
   m_Layer: 0
@@ -34,6 +36,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3786116649441852304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355682997896962474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c114d03a5bb693a49b2d2585b2ecaa26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-2662349281127893651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +61,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 1844693673413821253, guid: 0c6f35cd41582eb4fb5cdaea8c0a178e, type: 3}
+--- !u!114 &5295673229154144379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355682997896962474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babf89adb7d3180418882e5d3a22996b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  movementDirection:
+    x: 1
+    y: 0
+    z: 0
 --- !u!33 &6940323432130201842
 MeshFilter:
   m_ObjectHideFlags: 0

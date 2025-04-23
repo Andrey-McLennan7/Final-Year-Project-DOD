@@ -40,7 +40,7 @@ partial struct SpawnMysteryShipSystem : ISystem
         mysteryShipSpawner.ValueRW.mysteryShipEntity = mysteryShipEntity;
 
         // Get necessary mystery ship components
-        RefRW<MysteryShipMover> mysteryShipMover = SystemAPI.GetComponentRW<MysteryShipMover>(mysteryShipEntity);
+        RefRW<Movement> mysteryShipMover = SystemAPI.GetComponentRW<Movement>(mysteryShipEntity);
         RefRW<LocalTransform> mysteryShipLocalTransform = SystemAPI.GetComponentRW<LocalTransform>(mysteryShipEntity);
 
         // Spawn the mystery ship at a random position

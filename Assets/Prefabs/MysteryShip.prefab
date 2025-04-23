@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1547727951413525339}
   - component: {fileID: 5099781661228549639}
   - component: {fileID: 7907302455843862463}
+  - component: {fileID: -3372219106335076786}
   - component: {fileID: 2663658711291143708}
-  - component: {fileID: 3784288482809094495}
   m_Layer: 0
   m_Name: MysteryShip
   m_TagString: Untagged
@@ -85,6 +85,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3372219106335076786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465876234928854878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babf89adb7d3180418882e5d3a22996b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 7
+  movementDirection:
+    x: 0
+    y: 0
+    z: 0
 --- !u!114 &2663658711291143708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,16 +114,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a10b776e528604caf6df009249ba90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3784288482809094495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2465876234928854878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a335c4155481f8c408b97a7f91b2b064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 7
