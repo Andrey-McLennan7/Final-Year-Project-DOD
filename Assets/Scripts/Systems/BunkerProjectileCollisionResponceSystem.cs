@@ -12,7 +12,7 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
     {
         foreach ((RefRO<LocalToWorld> localToWorld, RefRW<BunkerHealth> bunkerHealth) in SystemAPI.Query<RefRO<LocalToWorld>, RefRW<BunkerHealth>>())
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 --bunkerHealth.ValueRW.health;
 
@@ -22,7 +22,6 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
 
                 bunkerHealthBarTransformMatrix.ValueRW.Value =
                     float4x4.Scale(normalisedHealth * localToWorld.ValueRO.Value.c0.x, localToWorld.ValueRO.Value.c1.y, 1.0f);
-
             }
         }
     }
