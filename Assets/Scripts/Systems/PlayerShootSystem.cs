@@ -3,17 +3,23 @@ using Unity.Burst;
 using Unity.Transforms;
 
 [BurstCompile]
+[UpdateBefore(typeof(ProjectileMovementSystem))]
 partial struct PlayerShootSystem : ISystem
 {
+    Entity playerEntity;
+
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        if (!SystemAPI.HasSingleton<Player>())
+        if (playerEntity == Entity.Null || !state.EntityManager.Exists(playerEntity))
         {
-            return;
-        }
+            if (!SystemAPI.HasSingleton<Player>())
+            {
+                return;
+            }
 
-        Entity playerEntity = SystemAPI.GetSingletonEntity<Player>();
+            playerEntity = SystemAPI.GetSingletonEntity<Player>();
+        }
 
         RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(playerEntity);
         RefRO<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRO<LocalTransform>(playerEntity);
@@ -31,7 +37,7 @@ partial struct PlayerShootSystem : ISystem
 
             RefRW<Projectile> laserProjectile = SystemAPI.GetComponentRW<Projectile>(laserEntity);
 
-            laserProjectile.ValueRW.playerEntity = playerEntity;
+            laserProjectile.ValueRW.entityThatShot = playerEntity;
 
             playerShoot.ValueRW.activeLaser = true;
         }

@@ -13,7 +13,7 @@ public class InvaderGridStateAuthoring : MonoBehaviour
             {
                 totalAmount = 0,
                 amountKilled = 0,
-                amountAlive = 0,
+                amountAlive = 55,
                 percentKilled = 0.0f,
             });
         }

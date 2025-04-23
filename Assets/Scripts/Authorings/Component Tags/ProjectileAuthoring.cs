@@ -17,5 +17,5 @@ public class ProjectileAuthoring : MonoBehaviour
 
 public struct Projectile : IComponentData
 {
-    public Entity playerEntity;
+    public Entity entityThatShot;
 }

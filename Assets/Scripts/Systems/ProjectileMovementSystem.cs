@@ -3,7 +3,6 @@ using Unity.Entities;
 using Unity.Transforms;
 
 [BurstCompile]
-[UpdateAfter(typeof(PlayerShootSystem))]
 partial struct ProjectileMovementSystem : ISystem
 {
     [BurstCompile]
@@ -16,22 +15,32 @@ partial struct ProjectileMovementSystem : ISystem
         {
             localTransform.ValueRW.Position += movement.ValueRO.movementDirection * movement.ValueRO.movementSpeed * SystemAPI.Time.DeltaTime;
 
-            // Temporary start
+            // ----------------------- Temporary start -----------------------
             if (localTransform.ValueRO.Position.y < 16.0f &&
                 localTransform.ValueRO.Position.y > -16.0f )
             {
                 continue;
             }
 
-            if (projectile.ValueRO.playerEntity != Entity.Null)
+            if (projectile.ValueRO.entityThatShot != Entity.Null ||
+                !state.EntityManager.Exists(projectile.ValueRO.entityThatShot))
             {
-                RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.playerEntity);
+                if (SystemAPI.HasComponent<Laser>(projectileEntity))
+                {
+                    RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.entityThatShot);
 
-                playerShoot.ValueRW.activeLaser = false;
+                    playerShoot.ValueRW.activeLaser = false;
+                }
+                else
+                {
+                    RefRW<InvaderShoot> invaderShoot = SystemAPI.GetComponentRW<InvaderShoot>(projectile.ValueRO.entityThatShot);
+
+                    invaderShoot.ValueRW.activeMissile = false;
+                }
             }
 
             entityCommandBuffer.DestroyEntity(projectileEntity);
-            // Temporary end
+            // ----------------------- Temporary end -----------------------
         }
     }
 }
