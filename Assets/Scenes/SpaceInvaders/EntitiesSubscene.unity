@@ -347,11 +347,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2009826285}
+  - component: {fileID: 2009826289}
   - component: {fileID: 2009826288}
   - component: {fileID: 2009826287}
   - component: {fileID: 2009826286}
   - component: {fileID: 2009826290}
-  - component: {fileID: 2009826289}
   m_Layer: 0
   m_Name: InvaderGrid
   m_TagString: Untagged
