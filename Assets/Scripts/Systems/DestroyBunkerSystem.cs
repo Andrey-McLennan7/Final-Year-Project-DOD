@@ -2,6 +2,7 @@ using Unity.Entities;
 using Unity.Burst;
 
 [BurstCompile]
+[UpdateAfter(typeof(BunkerProjectileCollisionResponceSystem))]
 partial struct DestroyBunkerSystem : ISystem
 {
     [BurstCompile]
