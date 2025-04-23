@@ -11,7 +11,7 @@ public class InvaderGridMovementAuthoring : MonoBehaviour
     {
         public override void Bake(InvaderGridMovementAuthoring authoring)
         {
-            Entity entity = GetEntity(TransformUsageFlags.Dynamic);
+            Entity entity = GetEntity(TransformUsageFlags.None);
 
             AddComponent(entity, new InvaderGridMovement
             {

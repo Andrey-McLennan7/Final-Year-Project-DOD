@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 2009826288}
   - component: {fileID: 2009826287}
   - component: {fileID: 2009826286}
+  - component: {fileID: 2009826290}
   - component: {fileID: 2009826289}
   m_Layer: 0
   m_Name: InvaderGrid
@@ -414,10 +415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1edf8bd1ab4b14aa16dbf5cb9c870e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invaderTypes:
-  - {fileID: 3126367388535474468, guid: df484d607aa50eb4ba5f06c044f22d8e, type: 3}
-  - {fileID: 8257460072045618669, guid: 802cb5e3c3e0fac49b304d3386bd1e8b, type: 3}
-  - {fileID: 6654006926361106450, guid: e5aea447a87f29644bb020f784fc34a5, type: 3}
   rows: 5
   columns: 11
 --- !u!114 &2009826289
@@ -432,6 +429,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b008a1a73c4c84a98d1ebdf465ff56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2009826290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009826284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e10daf5325f2c43be3a4858a8aa62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invaderTypePrefabs:
+  - {fileID: 6654006926361106450, guid: e5aea447a87f29644bb020f784fc34a5, type: 3}
+  - {fileID: 6654006926361106450, guid: e5aea447a87f29644bb020f784fc34a5, type: 3}
+  - {fileID: 8257460072045618669, guid: 802cb5e3c3e0fac49b304d3386bd1e8b, type: 3}
+  - {fileID: 8257460072045618669, guid: 802cb5e3c3e0fac49b304d3386bd1e8b, type: 3}
+  - {fileID: 3126367388535474468, guid: df484d607aa50eb4ba5f06c044f22d8e, type: 3}
 --- !u!1001 &2035826581
 PrefabInstance:
   m_ObjectHideFlags: 0

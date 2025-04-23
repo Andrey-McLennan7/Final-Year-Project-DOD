@@ -7,7 +7,7 @@ public class InvaderGridStateAuthoring : MonoBehaviour
     {
         public override void Bake(InvaderGridStateAuthoring authoring)
         {
-            Entity entity = GetEntity(TransformUsageFlags.Dynamic);
+            Entity entity = GetEntity(TransformUsageFlags.None);
 
             AddComponent(entity, new InvaderGridState
             {

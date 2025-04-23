@@ -1,10 +1,9 @@
 using UnityEngine;
 using Unity.Entities;
+using Unity.Mathematics;
 
 public class InvaderGridAuthoring : MonoBehaviour
 {
-    public GameObject[] invaderTypes;
-
     public int rows = 5;
     public int columns = 11;
 
@@ -12,16 +11,13 @@ public class InvaderGridAuthoring : MonoBehaviour
     {
         public override void Bake(InvaderGridAuthoring authoring)
         {
-            Entity entity = GetEntity(TransformUsageFlags.Dynamic);
+            Entity entity = GetEntity(TransformUsageFlags.None);
 
             AddComponent(entity, new InvaderGrid
             {
-                invader1 = GetEntity(authoring.invaderTypes[0], TransformUsageFlags.Dynamic),
-                invader2 = GetEntity(authoring.invaderTypes[1], TransformUsageFlags.Dynamic),
-                invader3 = GetEntity(authoring.invaderTypes[2], TransformUsageFlags.Dynamic),
-
                 rows = authoring.rows,
                 columns = authoring.columns,
+                position = new float3(authoring.transform.position),
             });
         }
     }
@@ -29,10 +25,8 @@ public class InvaderGridAuthoring : MonoBehaviour
 
 public struct InvaderGrid : IComponentData
 {
-    public Entity invader1;
-    public Entity invader2;
-    public Entity invader3;
-
     public int rows;
     public int columns;
+
+    public float3 position;
 }
