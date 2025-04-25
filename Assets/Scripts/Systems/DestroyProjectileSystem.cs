@@ -37,7 +37,7 @@ partial struct DestroyProjectileSystem : ISystem
                     continue;
                 }
 
-                if (!BoxCollisionResponceSystem.OnCollisionResponce(projectileLocalTransform, projectileBoxCollider,
+                if (!BoxCollisionResponseSystem.OnCollisionResponce(projectileLocalTransform, projectileBoxCollider,
                     otherLocalTransform, otherBoxCollider))
                 {
                     continue;

@@ -3,7 +3,7 @@ using Unity.Burst;
 using Unity.Transforms;
 
 [BurstCompile]
-partial struct InvaderProjectileResponceSystem : ISystem
+partial struct InvaderProjectileResponseSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)
@@ -23,7 +23,7 @@ partial struct InvaderProjectileResponceSystem : ISystem
         {
             foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Laser> laser, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Laser>, RefRO<BoxCollider>>())
             {
-                if (!BoxCollisionResponceSystem.OnCollisionResponce(invaderLocalTransform, invaderBoxCollider,
+                if (!BoxCollisionResponseSystem.OnCollisionResponce(invaderLocalTransform, invaderBoxCollider,
                     projectileLocalTransform, projectileBoxCollider))
                 {
                     continue;

@@ -4,7 +4,7 @@ using Unity.Transforms;
 using Unity.Mathematics;
 
 [BurstCompile]
-partial struct BunkerProjectileCollisionResponceSystem : ISystem
+partial struct BunkerProjectileCollisionResponseSystem : ISystem
 {
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
@@ -13,7 +13,7 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
         {
             foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Projectile> projectile, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Projectile>, RefRO<BoxCollider>>())
             {
-                if (!BoxCollisionResponceSystem.OnCollisionResponce(bunkerLocalTransform, bunkerBoxCollider,
+                if (!BoxCollisionResponseSystem.OnCollisionResponce(bunkerLocalTransform, bunkerBoxCollider,
                     projectileLocalTransform, projectileBoxCollider))
                 {
                     continue;

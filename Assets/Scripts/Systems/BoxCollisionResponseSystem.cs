@@ -2,7 +2,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using Unity.Mathematics;
 
-public static class BoxCollisionResponceSystem
+public static class BoxCollisionResponseSystem
 {
     public static bool OnCollisionResponce(RefRO<LocalTransform> localTransform1, RefRO<BoxCollider> boxCollider1,
                                            RefRO<LocalTransform> localTransform2, RefRO<BoxCollider> boxCollider2)
