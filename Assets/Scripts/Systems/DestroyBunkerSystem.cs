@@ -15,7 +15,7 @@ partial struct DestroyBunkerSystem : ISystem
         {
             if (bunker.ValueRO.health > 0)
             {
-                return;
+                continue;
             }
 
             entityCommandBuffer.DestroyEntity(bunkerEntity);

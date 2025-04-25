@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 2426337014996351743}
   - component: {fileID: 7955937674199800289}
   - component: {fileID: 4721854347843298395}
+  - component: {fileID: 3607876371797308175}
   - component: {fileID: 5222439017560880140}
   m_Layer: 0
   m_Name: Bunker
@@ -215,6 +216,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6817271102163825146}
   maxHealth: 10
+--- !u!114 &3607876371797308175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091995720327153284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f67ba9123eee324e972271ca83446dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size:
+    x: 2.7
+    y: 2
+    z: 1
 --- !u!114 &5222439017560880140
 MonoBehaviour:
   m_ObjectHideFlags: 0
