@@ -23,7 +23,16 @@ partial struct DestroyProjectileSystem : ISystem
         {
             foreach ((RefRO<LocalTransform> otherLocalTransform, RefRO<BoxCollider> otherBoxCollider, Entity otherEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>>().WithEntityAccess())
             {
+                // Make sure that the projectile does not collide with itself
                 if (projectileEntity == otherEntity)
+                {
+                    continue;
+                }
+
+                // Male sure that the laser projectile does not collide with the player
+                // And make sure that the missile projectile does not collide with the invader
+                if (SystemAPI.HasComponent<Laser>(projectileEntity)   && SystemAPI.HasComponent<Player>(otherEntity) ||
+                    SystemAPI.HasComponent<Missile>(projectileEntity) && SystemAPI.HasComponent<Invader>(otherEntity) )
                 {
                     continue;
                 }

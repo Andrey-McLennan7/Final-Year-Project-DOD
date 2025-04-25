@@ -9,9 +9,9 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach ((RefRO<LocalTransform> bunkerLocalTransform, RefRO <LocalToWorld> bunkerLocalToWorld, RefRW<BunkerHealth> bunkerHealth, RefRO<BoxCollider> bunkerBoxCollider, Entity bunkerEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<LocalToWorld>, RefRW<BunkerHealth>, RefRO<BoxCollider>>().WithEntityAccess())
+        foreach ((RefRO<LocalTransform> bunkerLocalTransform, RefRO <LocalToWorld> bunkerLocalToWorld, RefRW<BunkerHealth> bunkerHealth, RefRO<BoxCollider> bunkerBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<LocalToWorld>, RefRW<BunkerHealth>, RefRO<BoxCollider>>())
         {
-            foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Projectile> projectile, RefRO<BoxCollider> projectileBoxCollider, Entity projectileEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Projectile>, RefRO<BoxCollider>>().WithEntityAccess())
+            foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Projectile> projectile, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Projectile>, RefRO<BoxCollider>>())
             {
                 if (!BoxCollisionResponceSystem.OnCollisionResponce(bunkerLocalTransform, bunkerBoxCollider,
                     projectileLocalTransform, projectileBoxCollider))
