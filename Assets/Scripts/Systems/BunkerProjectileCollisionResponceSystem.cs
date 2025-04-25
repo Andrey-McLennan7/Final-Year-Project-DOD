@@ -9,12 +9,9 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        EntityCommandBuffer entityCommandBuffer =
-            SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
-
         foreach ((RefRO<LocalTransform> bunkerLocalTransform, RefRO <LocalToWorld> bunkerLocalToWorld, RefRW<BunkerHealth> bunkerHealth, RefRO<BoxCollider> bunkerBoxCollider, Entity bunkerEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<LocalToWorld>, RefRW<BunkerHealth>, RefRO<BoxCollider>>().WithEntityAccess())
         {
-            foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Projectile> projectile, RefRO<Laser> laser, RefRO<BoxCollider> projectileBoxCollider, Entity projectileEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Projectile>, RefRO<Laser>, RefRO<BoxCollider>>().WithEntityAccess())
+            foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Projectile> projectile, RefRO<BoxCollider> projectileBoxCollider, Entity projectileEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Projectile>, RefRO<BoxCollider>>().WithEntityAccess())
             {
                 if (!BoxCollisionResponceSystem.OnCollisionResponce(bunkerLocalTransform, bunkerBoxCollider,
                     projectileLocalTransform, projectileBoxCollider))
@@ -23,12 +20,6 @@ partial struct BunkerProjectileCollisionResponceSystem : ISystem
                 }
 
                 --bunkerHealth.ValueRW.health;
-
-                RefRW<PlayerShoot> playerShoot = SystemAPI.GetComponentRW<PlayerShoot>(projectile.ValueRO.entityThatShot);
-
-                playerShoot.ValueRW.activeLaser = false;
-
-                entityCommandBuffer.DestroyEntity(projectileEntity);
 
                 if (!SystemAPI.HasComponent<PostTransformMatrix>(bunkerHealth.ValueRW.healthBar))
                 {
