@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2355682997896962474, guid: 08895b28abfc1f74ba8b5e5f81e002a5, type: 3}
       propertyPath: m_Name
-      value: InvaderBase
+      value: Invader_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407188380549818514, guid: 08895b28abfc1f74ba8b5e5f81e002a5, type: 3}
+      propertyPath: G
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

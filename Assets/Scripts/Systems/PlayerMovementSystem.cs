@@ -2,7 +2,6 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using Unity.Rendering;
 
 [BurstCompile]
 partial struct PlayerMovementSystem : ISystem
@@ -21,13 +20,6 @@ partial struct PlayerMovementSystem : ISystem
 
             // Get reference to the player
             playerEntity = SystemAPI.GetSingletonEntity<Player>();
-
-            URPMaterialPropertyBaseColor baseColor = new URPMaterialPropertyBaseColor()
-            {
-                Value = new float4(0.0f, 1.0f, 0.0f, 1.0f)
-            };
-
-            state.EntityManager.AddComponentData(playerEntity, baseColor);
         }
 
         // Get necessary player components
