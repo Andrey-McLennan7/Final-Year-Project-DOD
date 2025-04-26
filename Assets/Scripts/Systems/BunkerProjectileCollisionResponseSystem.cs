@@ -4,6 +4,7 @@ using Unity.Transforms;
 using Unity.Mathematics;
 
 [BurstCompile]
+[UpdateBefore(typeof(DestroyProjectileSystem))]
 partial struct BunkerProjectileCollisionResponseSystem : ISystem
 {
     [BurstCompile]

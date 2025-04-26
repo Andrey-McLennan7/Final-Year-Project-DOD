@@ -7,11 +7,22 @@ using Unity.Mathematics;
 [BurstCompile]
 partial struct SpawnMysteryShipSystem : ISystem
 {
+    // Reference point to the mystery ship spawner
+    Entity mysteryShipSpawnerEntity;
+
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        // Get reference to the mystery ship spawner
-        Entity mysteryShipSpawnerEntity = SystemAPI.GetSingletonEntity<MysteryShipSpawner>();
+        if (mysteryShipSpawnerEntity == Entity.Null || !state.EntityManager.Exists(mysteryShipSpawnerEntity))
+        {
+            if (!SystemAPI.HasSingleton<MysteryShipSpawner>())
+            {
+                return;
+            }
+
+            // Get reference to the mystery ship spawner
+            mysteryShipSpawnerEntity = SystemAPI.GetSingletonEntity<MysteryShipSpawner>();
+        }
 
         // Get necessary mystery ship spawner components
         RefRW<MysteryShipSpawner> mysteryShipSpawner = SystemAPI.GetComponentRW<MysteryShipSpawner>(mysteryShipSpawnerEntity);

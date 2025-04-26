@@ -6,18 +6,31 @@ using Unity.Transforms;
 [UpdateAfter(typeof(MoveMysteryShipSystem))]
 partial struct DestroyMysteryShipSystem : ISystem
 {
+    // Reference point to the mystery ship spawner
+    Entity mysteryShipSpawnerEntity;
+
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        // Get reference to the mystery ship spawner
-        Entity mysteryShipSpawnerEntity = SystemAPI.GetSingletonEntity<MysteryShipSpawner>();
+        if (mysteryShipSpawnerEntity == Entity.Null || !state.EntityManager.Exists(mysteryShipSpawnerEntity))
+        {
+            if (!SystemAPI.HasSingleton<MysteryShipSpawner>())
+            {
+                return;
+            }
+
+            // Get reference to the mystery ship spawner
+            mysteryShipSpawnerEntity = SystemAPI.GetSingletonEntity<MysteryShipSpawner>();
+        }
 
         // Get necessary mystery ship spawner components
         RefRW<MysteryShipSpawner> mysteryShipSpawner = SystemAPI.GetComponentRW<MysteryShipSpawner>(mysteryShipSpawnerEntity);
 
         // Skip code if no instance of a mystery ship entity is found
-        if (!state.EntityManager.Exists(mysteryShipSpawner.ValueRO.mysteryShipEntity))
+        if (mysteryShipSpawner.ValueRO.mysteryShipEntity == Entity.Null ||
+            !state.EntityManager.Exists(mysteryShipSpawner.ValueRO.mysteryShipEntity))
         {
+            mysteryShipSpawner.ValueRW.activeMysteryShip = false;
             return;
         }
 
