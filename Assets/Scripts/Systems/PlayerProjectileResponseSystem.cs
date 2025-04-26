@@ -3,6 +3,7 @@ using Unity.Burst;
 using Unity.Transforms;
 
 [BurstCompile]
+[UpdateBefore(typeof(DestroyProjectileSystem))]
 partial struct PlayerProjectileResponseSystem : ISystem
 {
     [BurstCompile]
