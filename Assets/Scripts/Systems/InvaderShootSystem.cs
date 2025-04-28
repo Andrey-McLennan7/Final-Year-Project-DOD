@@ -29,9 +29,11 @@ partial struct InvaderShootSystem : ISystem
                 continue;
             }
 
+            RefRO<InvaderGridState> invaderGridState = SystemAPI.GetComponentRO<InvaderGridState>(invaderShoot.ValueRO.invaderGridEntity);
+
             if (UnityEngine.Random.Range(0, 501) == 500)
             {
-                if (UnityEngine.Random.value < (1.0f / 55.0f)) // 55.0f - temp
+                if (UnityEngine.Random.value < (1.0f / invaderGridState.ValueRO.amountAlive))
                 {
                     Entity missileEntity = state.EntityManager.Instantiate(invaderShoot.ValueRO.missilePrefab);
 

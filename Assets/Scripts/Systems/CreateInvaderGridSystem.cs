@@ -27,6 +27,7 @@ partial struct CreateInvaderGridSystem : ISystem
         }
 
         RefRO<InvaderGrid> invaderGrid = SystemAPI.GetComponentRO<InvaderGrid>(invaderGridEntity);
+        RefRW<InvaderGridState> invaderGridState = SystemAPI.GetComponentRW<InvaderGridState>(invaderGridEntity);
         DynamicBuffer<InvaderTypes> invaderTypes = SystemAPI.GetBuffer<InvaderTypes>(invaderGridEntity);
 
         for (int row = 0; row < invaderGrid.ValueRO.rows; ++row)
@@ -52,8 +53,15 @@ partial struct CreateInvaderGridSystem : ISystem
                 invaderLocalTransform.ValueRW.Position += position;
 
                 invaderShoot.ValueRW.invaderGridEntity = invaderGridEntity;
+
+                ++invaderGridState.ValueRW.amountAlive;
             }
         }
+
+        invaderGridState.ValueRW.totalAmount = invaderGrid.ValueRO.rows * invaderGrid.ValueRO.columns;
+
+        invaderGridState.ValueRW.percentKilled =
+            (float)invaderGridState.ValueRO.amountKilled / (float)invaderGridState.ValueRO.totalAmount;
 
         SystemAPI.SetComponentEnabled<Initialization>(invaderGridEntity, false);
     }

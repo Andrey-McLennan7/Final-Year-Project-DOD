@@ -3,6 +3,7 @@ using Unity.Entities;
 
 public class InvaderGridStateAuthoring : MonoBehaviour
 {
+    public float maxSpeed = 8.0f;
     private class Baker : Baker<InvaderGridStateAuthoring>
     {
         public override void Bake(InvaderGridStateAuthoring authoring)
@@ -13,8 +14,9 @@ public class InvaderGridStateAuthoring : MonoBehaviour
             {
                 totalAmount = 0,
                 amountKilled = 0,
-                amountAlive = 55,
+                amountAlive = 0,
                 percentKilled = 0.0f,
+                maxSpeed = authoring.maxSpeed,
             });
         }
     }
@@ -26,4 +28,5 @@ public struct InvaderGridState : IComponentData
     public int amountKilled;
     public int amountAlive;
     public float percentKilled;
+    public float maxSpeed;
 }
