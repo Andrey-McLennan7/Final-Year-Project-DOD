@@ -60,6 +60,13 @@ partial struct DestroyProjectileSystem : ISystem
                     }
                 }
 
+                // Destroy the entity the projectile collided with if
+                // it is a missile
+                if (SystemAPI.HasComponent<Missile>(otherEntity))
+                {
+                    entityCommandBuffer.DestroyEntity(otherEntity);
+                }
+
                 entityCommandBuffer.DestroyEntity(projectileEntity);
             }
         }
