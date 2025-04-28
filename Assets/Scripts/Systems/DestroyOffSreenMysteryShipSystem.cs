@@ -4,7 +4,7 @@ using Unity.Transforms;
 
 [BurstCompile]
 [UpdateAfter(typeof(MoveMysteryShipSystem))]
-partial struct DestroyMysteryShipSystem : ISystem
+partial struct DestroyOffSreenMysteryShipSystem : ISystem
 {
     // Reference point to the mystery ship spawner
     Entity mysteryShipSpawnerEntity;
@@ -30,7 +30,6 @@ partial struct DestroyMysteryShipSystem : ISystem
         if (mysteryShipSpawner.ValueRO.mysteryShipEntity == Entity.Null ||
             !state.EntityManager.Exists(mysteryShipSpawner.ValueRO.mysteryShipEntity))
         {
-            mysteryShipSpawner.ValueRW.activeMysteryShip = false;
             return;
         }
 

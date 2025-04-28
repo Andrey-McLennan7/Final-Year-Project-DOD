@@ -6,32 +6,40 @@ using Unity.Transforms;
 [UpdateBefore(typeof(DestroyProjectileSystem))]
 partial struct PlayerProjectileResponseSystem : ISystem
 {
-    [BurstCompile]
-    public void OnCreate(ref SystemState state)
-    {
-        state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
-        state.RequireForUpdate<LocalTransform>();
-        state.RequireForUpdate<BoxCollider>();
-    }
+    Entity playerEntity;
 
     [BurstCompile]
-    void OnUpdate(ref SystemState state)
+    public void OnUpdate(ref SystemState state)
     {
-        EntityCommandBuffer entityCommandBuffer =
-            SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
-
-        foreach ((RefRO<LocalTransform> playerLocalTransform, RefRO<BoxCollider> playerBoxCollider, RefRO<Player> player) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>, RefRO<Player>>())
+        if (playerEntity == Entity.Null || !state.EntityManager.Exists(playerEntity))
         {
-            foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Missile> missile, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Missile>, RefRO<BoxCollider>>())
+            if (!SystemAPI.HasSingleton<Player>())
             {
-                if (!BoxCollisionResponseSystem.OnCollisionResponce(playerLocalTransform, playerBoxCollider,
-                    projectileLocalTransform, projectileBoxCollider))
-                {
-                    continue;
-                }
-
-                UnityEngine.Debug.Log("YOU ARE DEAD NO BIG SUPRISE");
+                return;
             }
+
+            playerEntity = SystemAPI.GetSingletonEntity<Player>();
+        }
+
+        if (!SystemAPI.HasComponent<BoxCollider>(playerEntity))
+        {
+            return;
+        }
+
+        RefRO<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRO<LocalTransform>(playerEntity);
+        RefRO<BoxCollider> playerBoxCollider = SystemAPI.GetComponentRO<BoxCollider>(playerEntity);
+
+        foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Missile> missile, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Missile>, RefRO<BoxCollider>>())
+        {
+            if (!BoxCollisionResponseSystem.OnCollisionResponce(playerLocalTransform, playerBoxCollider,
+                projectileLocalTransform, projectileBoxCollider))
+            {
+                continue;
+            }
+
+            UnityEngine.Debug.Log("YOU ARE DEAD NO BIG SUPRISE");
+
+            break;
         }
     }
 }
