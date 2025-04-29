@@ -37,7 +37,12 @@ partial struct PlayerCollisionResponseSystem : ISystem
                 continue;
             }
 
-            UnityEngine.Debug.Log("YOU ARE DEAD NO BIG SUPRISE");
+            SystemAPI.SetComponent(playerEntity, new Player
+            {
+                destroyed = true,
+            });
+
+            //UnityEngine.Debug.Log("YOU ARE DEAD NO BIG SUPRISE");
 
             break;
         }
