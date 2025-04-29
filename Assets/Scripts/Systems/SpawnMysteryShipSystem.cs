@@ -52,22 +52,19 @@ partial struct SpawnMysteryShipSystem : ISystem
 
         // Get necessary mystery ship components
         RefRW<Movement> mysteryShipMover = SystemAPI.GetComponentRW<Movement>(mysteryShipEntity);
-        RefRW<LocalTransform> mysteryShipLocalTransform = SystemAPI.GetComponentRW<LocalTransform>(mysteryShipEntity);
 
         // Spawn the mystery ship at a random position
         if (UnityEngine.Random.Range(0, 11) % 2 == 0)
         {
             // Spawn right and move it left when the random value is even
-            mysteryShipLocalTransform.ValueRW.Position = new float3(17.0f, 13.0f, 0.0f);
-            mysteryShipLocalTransform.ValueRW.Rotation = Quaternion.identity;
+            SystemAPI.SetComponent<LocalTransform>(mysteryShipEntity, LocalTransform.FromPositionRotation(new float3(17.0f, 13.0f, 0.0f), quaternion.identity));
 
             mysteryShipMover.ValueRW.movementDirection = Vector3.left;
         }
         else
         {
             // Spawn left and move it riht when the random value is odd
-            mysteryShipLocalTransform.ValueRW.Position = new float3(-17.0f, 13.0f, 0.0f);
-            mysteryShipLocalTransform.ValueRW.Rotation = Quaternion.identity;
+            SystemAPI.SetComponent<LocalTransform>(mysteryShipEntity, LocalTransform.FromPositionRotation(new float3(-17.0f, 13.0f, 0.0f), quaternion.identity));
 
             mysteryShipMover.ValueRW.movementDirection = Vector3.right;
         }

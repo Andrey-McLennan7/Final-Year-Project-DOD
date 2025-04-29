@@ -4,7 +4,7 @@ using Unity.Transforms;
 
 [BurstCompile]
 [UpdateBefore(typeof(DestroyProjectileSystem))]
-partial struct PlayerProjectileResponseSystem : ISystem
+partial struct PlayerCollisionResponseSystem : ISystem
 {
     Entity playerEntity;
 
@@ -29,10 +29,10 @@ partial struct PlayerProjectileResponseSystem : ISystem
         RefRO<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRO<LocalTransform>(playerEntity);
         RefRO<BoxCollider> playerBoxCollider = SystemAPI.GetComponentRO<BoxCollider>(playerEntity);
 
-        foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>>().WithPresent<Missile>())
+        foreach ((RefRO<LocalTransform> dangerLocalTransform, RefRO<BoxCollider> dangerBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>>().WithPresent<Danger>())
         {
             if (!BoxCollisionResponseSystem.OnCollisionResponse(playerLocalTransform, playerBoxCollider,
-                projectileLocalTransform, projectileBoxCollider))
+                dangerLocalTransform, dangerBoxCollider))
             {
                 continue;
             }

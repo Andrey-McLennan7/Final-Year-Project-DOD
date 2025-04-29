@@ -1,6 +1,8 @@
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Transforms;
+using Unity.Mathematics;
+using Unity.Collections;
 
 [BurstCompile]
 [UpdateBefore(typeof(ProjectileMovementSystem))]
@@ -33,7 +35,12 @@ partial struct PlayerShootSystem : ISystem
 
             Entity laserEntity = state.EntityManager.Instantiate(playerShoot.ValueRO.laserPrefab);
 
-            SystemAPI.SetComponent(laserEntity, LocalTransform.FromPosition(playerLocalTransform.ValueRO.Position));
+            state.EntityManager.SetComponentData(laserEntity, new LocalTransform
+            {
+                Position = playerLocalTransform.ValueRO.Position,
+                Rotation = quaternion.identity,
+                Scale = 1.0f,
+            });
 
             RefRW<Projectile> laserProjectile = SystemAPI.GetComponentRW<Projectile>(laserEntity);
 

@@ -1,16 +1,16 @@
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Transforms;
+using Unity.Mathematics;
 
 [BurstCompile]
-[UpdateAfter(typeof(PlayerShootSystem))]
 [UpdateBefore(typeof(ProjectileMovementSystem))]
 partial struct InvaderShootSystem : ISystem
 {
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach ((RefRO<LocalTransform> localTransform, RefRW<InvaderShoot> invaderShoot, Entity invaderEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRW<InvaderShoot>>().WithEntityAccess())
+        foreach ((RefRO<LocalTransform> invaderLocalTransform, RefRW<InvaderShoot> invaderShoot, Entity invaderEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRW<InvaderShoot>>().WithEntityAccess())
         {
             if (invaderShoot.ValueRO.missilePrefab == Entity.Null ||
                 !state.EntityManager.Exists(invaderShoot.ValueRO.missilePrefab))
@@ -31,13 +31,23 @@ partial struct InvaderShootSystem : ISystem
 
             RefRO<InvaderGridState> invaderGridState = SystemAPI.GetComponentRO<InvaderGridState>(invaderShoot.ValueRO.invaderGridEntity);
 
+            if (invaderShoot.ValueRO.activeMissile)
+            {
+                continue;
+            }
+
             if (UnityEngine.Random.Range(0, 501) == 500)
             {
                 if (UnityEngine.Random.value < (1.0f / invaderGridState.ValueRO.amountAlive))
                 {
-                    Entity missileEntity = state.EntityManager.Instantiate(invaderShoot.ValueRO.missilePrefab);
+                    state.EntityManager.SetComponentData(invaderShoot.ValueRO.missilePrefab, new LocalTransform
+                    {
+                        Position = invaderLocalTransform.ValueRO.Position,
+                        Rotation = quaternion.identity,
+                        Scale = 1.0f,
+                    });
 
-                    SystemAPI.SetComponent(missileEntity, LocalTransform.FromPosition(localTransform.ValueRO.Position));
+                    Entity missileEntity = state.EntityManager.Instantiate(invaderShoot.ValueRO.missilePrefab);
 
                     RefRW<Projectile> missileProjectile = SystemAPI.GetComponentRW<Projectile>(missileEntity);
 

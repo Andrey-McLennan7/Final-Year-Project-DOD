@@ -29,7 +29,7 @@ partial struct DestroyProjectileSystem : ISystem
                     continue;
                 }
 
-                // Male sure that the laser projectile does not collide with the player
+                // Make sure that the laser projectile does not collide with the player
                 // And make sure that the missile projectile does not collide with the invader
                 if (SystemAPI.HasComponent<Laser>(projectileEntity)   && SystemAPI.HasComponent<Player>(otherEntity) ||
                     SystemAPI.HasComponent<Missile>(projectileEntity) && SystemAPI.HasComponent<Invader>(otherEntity) )
@@ -43,8 +43,8 @@ partial struct DestroyProjectileSystem : ISystem
                     continue;
                 }
 
-                if (projectile.ValueRO.entityThatShot != Entity.Null ||
-                    !state.EntityManager.Exists(projectile.ValueRO.entityThatShot))
+                if (projectile.ValueRO.entityThatShot != Entity.Null &&
+                    state.EntityManager.Exists(projectile.ValueRO.entityThatShot))
                 {
                     if (SystemAPI.HasComponent<Laser>(projectileEntity))
                     {
