@@ -4,7 +4,7 @@ using Unity.Mathematics;
 
 public static class BoxCollisionResponseSystem
 {
-    public static bool OnCollisionResponce(RefRO<LocalTransform> localTransform1, RefRO<BoxCollider> boxCollider1,
+    public static bool OnCollisionResponse(RefRO<LocalTransform> localTransform1, RefRO<BoxCollider> boxCollider1,
                                            RefRO<LocalTransform> localTransform2, RefRO<BoxCollider> boxCollider2)
     {
         float3 a = localTransform1.ValueRO.Position + boxCollider1.ValueRO.offset;

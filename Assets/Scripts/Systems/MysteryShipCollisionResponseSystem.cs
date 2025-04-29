@@ -56,7 +56,7 @@ partial struct MysteryShipCollisionResponseSystem : ISystem
 
         foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<BoxCollider> projectileBoxCollider, RefRO<Laser> laser) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>, RefRO<Laser>>())
         {
-            if (!BoxCollisionResponseSystem.OnCollisionResponce(mysteryShipLocalTransform, mysteryShipBoxCollider,
+            if (!BoxCollisionResponseSystem.OnCollisionResponse(mysteryShipLocalTransform, mysteryShipBoxCollider,
                 projectileLocalTransform, projectileBoxCollider))
             {
                 continue;

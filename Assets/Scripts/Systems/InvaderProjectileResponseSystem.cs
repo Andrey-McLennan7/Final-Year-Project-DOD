@@ -37,7 +37,7 @@ partial struct InvaderProjectileResponseSystem : ISystem
         {
             foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>>().WithPresent<Laser>())
             {
-                if (!BoxCollisionResponseSystem.OnCollisionResponce(invaderLocalTransform, invaderBoxCollider,
+                if (!BoxCollisionResponseSystem.OnCollisionResponse(invaderLocalTransform, invaderBoxCollider,
                     projectileLocalTransform, projectileBoxCollider))
                 {
                     continue;
