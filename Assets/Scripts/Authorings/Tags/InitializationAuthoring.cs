@@ -9,7 +9,7 @@ public class InitializationAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new Initialization { });
+            AddComponent<Initialization>(entity);
         }
     }
 }

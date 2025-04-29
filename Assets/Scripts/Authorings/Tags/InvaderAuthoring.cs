@@ -9,7 +9,7 @@ public class InvaderAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new Invader { });
+            AddComponent<Invader>(entity);
         }
     }
 }

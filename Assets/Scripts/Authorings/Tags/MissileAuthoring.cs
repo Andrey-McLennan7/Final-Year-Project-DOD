@@ -9,7 +9,7 @@ public class MissileAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new Missile { });
+            AddComponent<Missile>(entity);
         }
     }
 }

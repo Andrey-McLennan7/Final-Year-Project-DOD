@@ -9,7 +9,7 @@ public class LaserAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new Laser { });
+            AddComponent<Laser>(entity);
         }
     }
 }
