@@ -11,9 +11,9 @@ partial struct DestroyBunkerSystem : ISystem
         EntityCommandBuffer entityCommandBuffer =
             SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach ((RefRO<BunkerHealth> bunker, Entity bunkerEntity) in SystemAPI.Query<RefRO<BunkerHealth>>().WithEntityAccess())
+        foreach ((RefRO<BunkerHealth> bunkerHealth, Entity bunkerEntity) in SystemAPI.Query<RefRO<BunkerHealth>>().WithEntityAccess())
         {
-            if (bunker.ValueRO.health > 0)
+            if (bunkerHealth.ValueRO.health > 0)
             {
                 continue;
             }

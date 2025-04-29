@@ -29,7 +29,7 @@ partial struct PlayerProjectileResponseSystem : ISystem
         RefRO<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRO<LocalTransform>(playerEntity);
         RefRO<BoxCollider> playerBoxCollider = SystemAPI.GetComponentRO<BoxCollider>(playerEntity);
 
-        foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Missile> missile, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Missile>, RefRO<BoxCollider>>())
+        foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>>().WithPresent<Missile>())
         {
             if (!BoxCollisionResponseSystem.OnCollisionResponce(playerLocalTransform, playerBoxCollider,
                 projectileLocalTransform, projectileBoxCollider))

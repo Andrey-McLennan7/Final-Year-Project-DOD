@@ -29,7 +29,7 @@ partial struct InvaderMovementSystem : ISystem
         state.Dependency = movementHandle;
         movementHandle.Complete();
 
-        foreach ((RefRO<LocalTransform> localTransform, RefRO<Movement> movement, RefRO<Invader> invader) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Movement>, RefRO<Invader>>())
+        foreach ((RefRO<LocalTransform> localTransform, RefRO<Movement> movement) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Movement>>().WithPresent<Invader>())
         {
             if (movement.ValueRO.movementDirection.x > 0.0f && localTransform.ValueRO.Position.x >=  (14.0f) ||
                 movement.ValueRO.movementDirection.x < 0.0f && localTransform.ValueRO.Position.x <= (-14.0f)  )

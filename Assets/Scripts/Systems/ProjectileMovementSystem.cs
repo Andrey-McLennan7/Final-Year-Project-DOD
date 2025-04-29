@@ -8,7 +8,7 @@ partial struct ProjectileMovementSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach ((RefRW<LocalTransform> localTransform, RefRO<Projectile> projectile, RefRO<Movement> movement) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<Projectile>, RefRO<Movement>>())
+        foreach ((RefRW<LocalTransform> localTransform, RefRO<Movement> movement) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<Movement>>().WithPresent<Projectile>())
         {
             localTransform.ValueRW.Position +=
                 movement.ValueRO.movementDirection *

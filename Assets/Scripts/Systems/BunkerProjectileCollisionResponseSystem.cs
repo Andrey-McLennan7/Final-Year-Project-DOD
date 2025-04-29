@@ -12,7 +12,7 @@ partial struct BunkerProjectileCollisionResponseSystem : ISystem
     {
         foreach ((RefRO<LocalTransform> bunkerLocalTransform, RefRO <LocalToWorld> bunkerLocalToWorld, RefRW<BunkerHealth> bunkerHealth, RefRO<BoxCollider> bunkerBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<LocalToWorld>, RefRW<BunkerHealth>, RefRO<BoxCollider>>())
         {
-            foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<Projectile> projectile, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<Projectile>, RefRO<BoxCollider>>())
+            foreach ((RefRO<LocalTransform> projectileLocalTransform, RefRO<BoxCollider> projectileBoxCollider) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<BoxCollider>>().WithPresent<Projectile>())
             {
                 if (!BoxCollisionResponseSystem.OnCollisionResponce(bunkerLocalTransform, bunkerBoxCollider,
                     projectileLocalTransform, projectileBoxCollider))
