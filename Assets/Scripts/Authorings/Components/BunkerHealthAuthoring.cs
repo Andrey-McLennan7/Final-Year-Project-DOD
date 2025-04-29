@@ -16,7 +16,7 @@ public class BunkerHealthAuthoring : MonoBehaviour
 
             AddComponent(entity, new BunkerHealth
             {
-                healthBar = GetEntity(authoring.healthBar, TransformUsageFlags.Dynamic),
+                healthBar = GetEntity(authoring.healthBar, TransformUsageFlags.NonUniformScale),
                 maxHealth = authoring.maxHealth,
                 health = authoring.maxHealth,
             });

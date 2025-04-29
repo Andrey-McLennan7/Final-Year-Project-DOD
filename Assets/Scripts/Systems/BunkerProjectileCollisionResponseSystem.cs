@@ -22,17 +22,12 @@ partial struct BunkerProjectileCollisionResponseSystem : ISystem
 
                 --bunkerHealth.ValueRW.health;
 
-                if (!SystemAPI.HasComponent<PostTransformMatrix>(bunkerHealth.ValueRW.healthBar))
-                {
-                    continue;
-                }
-
                 float normalisedHealth = (float)bunkerHealth.ValueRO.health / (float)bunkerHealth.ValueRO.maxHealth;
 
                 RefRW<PostTransformMatrix> bunkerHealthBarTransformMatrix = SystemAPI.GetComponentRW<PostTransformMatrix>(bunkerHealth.ValueRW.healthBar);
 
                 bunkerHealthBarTransformMatrix.ValueRW.Value =
-                    float4x4.Scale(normalisedHealth * bunkerLocalToWorld.ValueRO.Value.c0.x, bunkerLocalToWorld.ValueRO.Value.c1.y, 1.0f);
+                    float4x4.Scale(normalisedHealth, 1.0f, 1.0f);
             }
         }
     }
