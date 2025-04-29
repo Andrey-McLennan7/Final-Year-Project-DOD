@@ -8,16 +8,16 @@ public class ReloadScene : MonoBehaviour
     {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-        if (!entityManager.CreateEntityQuery(typeof(Player)).HasSingleton<Player>())
+        if (!entityManager.CreateEntityQuery(typeof(ResetGame)).HasSingleton<ResetGame>())
         {
             return;
         }
 
-        Entity playerEntity = entityManager.CreateEntityQuery(typeof(Player)).GetSingletonEntity();
+        Entity resetGameEntity = entityManager.CreateEntityQuery(typeof(ResetGame)).GetSingletonEntity();
 
-        Player player = entityManager.GetComponentData<Player>(playerEntity);
+        ResetGame resetGame = entityManager.GetComponentData<ResetGame>(resetGameEntity);
 
-        if (!player.destroyed)
+        if (!resetGame.reset)
         {
             return;
         }

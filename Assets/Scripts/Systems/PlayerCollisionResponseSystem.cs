@@ -7,6 +7,7 @@ using Unity.Transforms;
 partial struct PlayerCollisionResponseSystem : ISystem
 {
     Entity playerEntity;
+    Entity resetGameEntity;
 
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
@@ -26,6 +27,16 @@ partial struct PlayerCollisionResponseSystem : ISystem
             return;
         }
 
+        if (resetGameEntity == Entity.Null || !state.EntityManager.Exists(resetGameEntity))
+        {
+            if (!SystemAPI.HasSingleton<ResetGame>())
+            {
+                return;
+            }
+
+            resetGameEntity = SystemAPI.GetSingletonEntity<ResetGame>();
+        }
+
         RefRO<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRO<LocalTransform>(playerEntity);
         RefRO<BoxCollider> playerBoxCollider = SystemAPI.GetComponentRO<BoxCollider>(playerEntity);
 
@@ -37,12 +48,10 @@ partial struct PlayerCollisionResponseSystem : ISystem
                 continue;
             }
 
-            SystemAPI.SetComponent(playerEntity, new Player
+            SystemAPI.SetComponent(resetGameEntity, new ResetGame
             {
-                destroyed = true,
+                reset = true,
             });
-
-            //UnityEngine.Debug.Log("YOU ARE DEAD NO BIG SUPRISE");
 
             break;
         }

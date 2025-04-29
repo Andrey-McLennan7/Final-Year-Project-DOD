@@ -9,15 +9,9 @@ public class PlayerAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new Player
-            {
-                destroyed = false,
-            });
+            AddComponent<Player>(entity);
         }
     }
 }
 
-public struct Player : IComponentData
-{
-    public bool destroyed;
-}
+public struct Player : IComponentData { }
