@@ -10,10 +10,9 @@ partial struct ProjectileMovementSystem : ISystem
     {
         foreach ((RefRW<LocalTransform> localTransform, RefRO<Movement> movement) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<Movement>>().WithPresent<Projectile>())
         {
+            // Update position based on direction of movement
             localTransform.ValueRW.Position +=
-                movement.ValueRO.movementDirection *
-                movement.ValueRO.movementSpeed *
-                SystemAPI.Time.DeltaTime;
+                movement.ValueRO.movementDirection * movement.ValueRO.movementSpeed * SystemAPI.Time.DeltaTime;
         }
     }
 }

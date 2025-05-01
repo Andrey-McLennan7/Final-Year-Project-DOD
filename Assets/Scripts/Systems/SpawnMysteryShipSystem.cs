@@ -7,24 +7,26 @@ using Unity.Mathematics;
 [BurstCompile]
 partial struct SpawnMysteryShipSystem : ISystem
 {
-    // Reference point to the mystery ship spawner
+    // Reference Entity once
     Entity mysteryShipSpawnerEntity;
 
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
+        // Check if the entity reference is Null or the Entity no longer 
         if (mysteryShipSpawnerEntity == Entity.Null || !state.EntityManager.Exists(mysteryShipSpawnerEntity))
         {
+            // Also check if of the singleton Entity exists in the scene
             if (!SystemAPI.HasSingleton<MysteryShipSpawner>())
             {
                 return;
             }
 
-            // Get reference to the mystery ship spawner
+            // Get reference to the singleton entity
             mysteryShipSpawnerEntity = SystemAPI.GetSingletonEntity<MysteryShipSpawner>();
         }
 
-        // Get necessary mystery ship spawner components
+        // Get the refernces of the necessary components of the Entity
         RefRW<MysteryShipSpawner> mysteryShipSpawner = SystemAPI.GetComponentRW<MysteryShipSpawner>(mysteryShipSpawnerEntity);
 
         // Skip code during active ship
@@ -50,21 +52,23 @@ partial struct SpawnMysteryShipSystem : ISystem
 
         mysteryShipSpawner.ValueRW.mysteryShipEntity = mysteryShipEntity;
 
-        // Get necessary mystery ship components
+        // Get the refernces of the necessary components of the Entity
         RefRW<Movement> mysteryShipMover = SystemAPI.GetComponentRW<Movement>(mysteryShipEntity);
 
         // Spawn the mystery ship at a random position
         if (UnityEngine.Random.Range(0, 11) % 2 == 0)
         {
             // Spawn right and move it left when the random value is even
-            SystemAPI.SetComponent<LocalTransform>(mysteryShipEntity, LocalTransform.FromPositionRotation(new float3(17.0f, 13.0f, 0.0f), quaternion.identity));
+            SystemAPI.SetComponent<LocalTransform>(mysteryShipEntity,
+                LocalTransform.FromPositionRotation(new float3(17.0f, 13.0f, 0.0f), quaternion.identity));
 
             mysteryShipMover.ValueRW.movementDirection = Vector3.left;
         }
         else
         {
             // Spawn left and move it riht when the random value is odd
-            SystemAPI.SetComponent<LocalTransform>(mysteryShipEntity, LocalTransform.FromPositionRotation(new float3(-17.0f, 13.0f, 0.0f), quaternion.identity));
+            SystemAPI.SetComponent<LocalTransform>(mysteryShipEntity,
+                LocalTransform.FromPositionRotation(new float3(-17.0f, 13.0f, 0.0f), quaternion.identity));
 
             mysteryShipMover.ValueRW.movementDirection = Vector3.right;
         }

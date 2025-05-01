@@ -6,23 +6,26 @@ using Unity.Transforms;
 [BurstCompile]
 partial struct PlayerMovementSystem : ISystem
 {
+    // Reference Entity once
     Entity playerEntity;
 
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
+        // Check if the entity reference is Null or the Entity no longer 
         if (playerEntity == Entity.Null || !state.EntityManager.Exists(playerEntity))
         {
+            // Also check if of the singleton Entity exists in the scene
             if (!SystemAPI.HasSingleton<Player>())
             {
                 return;
             }
 
-            // Get reference to the player
+            // Get reference to the singleton entity
             playerEntity = SystemAPI.GetSingletonEntity<Player>();
         }
 
-        // Get necessary player components
+        // Get the refernces of the necessary components of the Entity
         RefRW<Movement> playerMovement = SystemAPI.GetComponentRW<Movement>(playerEntity);
         RefRW<LocalTransform> playerLocalTransform = SystemAPI.GetComponentRW<LocalTransform>(playerEntity);
 
