@@ -6,39 +6,42 @@ using Unity.Transforms;
 [UpdateAfter(typeof(MoveMysteryShipSystem))]
 partial struct DestroyOffSreenMysteryShipSystem : ISystem
 {
-    // Reference point to the mystery ship spawner
+    // Reference Entity once
     Entity mysteryShipSpawnerEntity;
 
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
+        // Check if the entity reference is null or no longer exists
         if (mysteryShipSpawnerEntity == Entity.Null || !state.EntityManager.Exists(mysteryShipSpawnerEntity))
         {
+            // Also check if of the singleton Entity exists in the scene
             if (!SystemAPI.HasSingleton<MysteryShipSpawner>())
             {
                 return;
             }
 
-            // Get reference to the mystery ship spawner
+            // Get reference to the singleton entity
             mysteryShipSpawnerEntity = SystemAPI.GetSingletonEntity<MysteryShipSpawner>();
         }
 
-        // Get necessary mystery ship spawner components
+        // Get the references to the necessary components of the Entity
         RefRW<MysteryShipSpawner> mysteryShipSpawner = SystemAPI.GetComponentRW<MysteryShipSpawner>(mysteryShipSpawnerEntity);
 
-        // Skip code if no instance of a mystery ship entity is found
+        // Skip the code if no instance of a mystery ship entity is found
         if (mysteryShipSpawner.ValueRO.mysteryShipEntity == Entity.Null ||
             !state.EntityManager.Exists(mysteryShipSpawner.ValueRO.mysteryShipEntity))
         {
             return;
         }
 
-        // Get reference to the mystery ship
+        // Get the reference to the mystery ship Entity
         Entity mysteryShipEntity = mysteryShipSpawner.ValueRO.mysteryShipEntity;
 
-        // Get necessary mystery ship components
+        // Get the references to the necessary components of the Entity
         RefRO<LocalTransform> mysteryShipLocalTransform = SystemAPI.GetComponentRO<LocalTransform>(mysteryShipEntity);
 
+        // Skip the code as long as the Mystery Ship Entity is within the boundaries of the scene/border
         if (mysteryShipLocalTransform.ValueRO.Position.x > -17.0f && mysteryShipLocalTransform.ValueRO.Position.x < 17.0f)
         {
             return;
