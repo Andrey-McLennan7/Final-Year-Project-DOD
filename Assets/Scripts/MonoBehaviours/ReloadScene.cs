@@ -4,10 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
+    EntityManager entityManager;
+
+    private void Start()
+    {
+        entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+    }
+
     private void Update()
     {
-        EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
         if (!entityManager.CreateEntityQuery(typeof(ResetGame)).HasSingleton<ResetGame>())
         {
             return;
