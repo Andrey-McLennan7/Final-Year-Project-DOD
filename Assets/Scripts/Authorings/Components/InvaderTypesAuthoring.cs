@@ -31,7 +31,7 @@ public class InvaderTypesAuthoring : MonoBehaviour
                 {
                     Entity invaderTypeEntity = GetEntity(invaderType, TransformUsageFlags.Dynamic);
 
-                    buffer.Add(new InvaderTypes { invaderTypePrefabs = invaderTypeEntity });
+                    buffer.Add(new InvaderTypes { invaderTypePrefab = invaderTypeEntity });
                 }
             }
         }
@@ -40,5 +40,5 @@ public class InvaderTypesAuthoring : MonoBehaviour
 
 public struct InvaderTypes : IBufferElementData
 {
-    public Entity invaderTypePrefabs;
+    public Entity invaderTypePrefab;
 }

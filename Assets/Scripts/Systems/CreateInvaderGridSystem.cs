@@ -60,7 +60,7 @@ partial struct CreateInvaderGridSystem : ISystem
             for (int col = 0; col < invaderGrid.ValueRO.columns; ++col)
             {
                 // Instantiate the invader
-                Entity invaderEntity = state.EntityManager.Instantiate(invaderTypes[row].invaderTypePrefabs);
+                Entity invaderEntity = state.EntityManager.Instantiate(invaderTypes[row].invaderTypePrefab);
 
                 // Set the initial position of the invader
                 SystemAPI.SetComponent(invaderEntity, LocalTransform.FromPosition(invaderGrid.ValueRO.position));
