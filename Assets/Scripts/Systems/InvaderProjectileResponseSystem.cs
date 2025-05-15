@@ -44,6 +44,9 @@ partial struct InvaderProjectileResponseSystem : ISystem
             invaderGridEntity = SystemAPI.GetSingletonEntity<InvaderGrid>();
         }
 
+        // Get the references to the necessary components of the Entity
+        RefRW<InvaderGridState> invaderGridState = SystemAPI.GetComponentRW<InvaderGridState>(invaderGridEntity);
+
         // Get reference to the Entity Command Buffer
         EntityCommandBuffer entityCommandBuffer =
             SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
@@ -58,9 +61,6 @@ partial struct InvaderProjectileResponseSystem : ISystem
                 {
                     continue;
                 }
-
-                // Get the references to the necessary components of the Entity
-                RefRW<InvaderGridState> invaderGridState = SystemAPI.GetComponentRW<InvaderGridState>(invaderGridEntity);
 
                 // Update the amount killed
                 ++invaderGridState.ValueRW.amountKilled;
