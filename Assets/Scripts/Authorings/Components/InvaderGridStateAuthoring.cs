@@ -16,6 +16,7 @@ using Unity.Entities;
 public class InvaderGridStateAuthoring : MonoBehaviour
 {
     public float maxSpeed = 8.0f;
+
     private class Baker : Baker<InvaderGridStateAuthoring>
     {
         public override void Bake(InvaderGridStateAuthoring authoring)
